@@ -31,15 +31,22 @@ class User < ApplicationRecord
 
     #* User Queries:
     ## The following queries are being typed here mainly as a resource for you.
-
+    
     #? Find all instructors between the ages of 90 to 100 inclusive
 
+    # User.find_by # only one object returned
+    User.where("age BETWEEN 90 AND 100") # inclusive
+    User.where(age: 90..100) # inclusive
+
     #? Find all users that are not JavaScript affiliated (use where not)
+
+    User.where.not("political_affiliation = 'JavaScript'")
 
     #? Find all instructors in this list and order by ascending
     instructors = ["mish_mosh", "wakka_wakka", "jen_ken_intensifies"]
 
-
-
+    # User.where.in(["mish_mosh", "wakka_wakka", "jen_ken_intensifies"]).order("username")
+    User.where("username IN (?)", instructors).order("username")
+    User.where(username: instructors).order("username") # Rails MAGIC
     
 end

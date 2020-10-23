@@ -41,17 +41,44 @@ class Chirp < ApplicationRecord
     ## The following queries are being typed here mainly as a resource for you.
 
     #? Find all chirps for a particular user
+
+    User.find_by(username: 'like_mike').chirps # two queries
+
     # one query version
+    # HINT: involves joins
+
+    # User.joins(:chirps).having("username = 'like_mike'") # having is paired with group
+    Chirp.joins(:author).where("username = 'like_mike'").select("chirps.*")
+            #association name  
 
     #? Find all chirps liked by people affiliated with JavaScript
+
+    Chirp.joins(:likers).where("political_affiliation = 'JavaScript'")   
+
     # unique values version
+    Chirp.joins(:likers).where("political_affiliation = 'JavaScript'").distinct   
+
 
     #? Find all chirps with no likes
 
+    Chirp.left_outer_joins(:likes).where(likes: { id: nil })
+
+    #? Find the number of likes each chirp has
+
+    Chirp.select(:id, :body, "count(*) AS num_likes").joins(:likes).group(:id)
+    Chirp.joins(:likes).group(:id).pluck(:body, "count(*) AS num_likes") # returns num of likes
+
     #? Find chirps with at least 3 likes (try to use pluck)
-    # what if we also wanted the number of likes?
+    # what if we also wanted the number of likes? (look above)
+
+    Chirp.select(:id, :body, "count(*) AS num_likes").joins(:likes).group(:id).having("count(*) > 2").pluck(:body, "count(*)")
+    Chirp.joins(:likes).group(:id).having("count(*) > 2").pluck(:body, "count(*)")
+
 
     #? Find all chirps created by someone age 99 that were also liked by someone age 99
+                                                                # alias for the joins table was made under the hood
+    Chirp.joins(:likers, :author).where(users: { age: 99 }).where(authors_chirps: { age: 99 })
+
 
     #* Includes example
 
