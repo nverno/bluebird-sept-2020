@@ -53,7 +53,7 @@ class Chirp < ApplicationRecord
 
     #? Find all chirps created by someone age 99 that were also liked by someone age 99
 
-    #* Includes examples
+    #* N + 1 query
 
     def self.see_chirp_authors_n_plus_one
         # the "+1"
@@ -66,6 +66,8 @@ class Chirp < ApplicationRecord
 
     end
 
+    #* Includes version
+
     def self.see_chirps_optimized
         # pre-fetches data
         chirps = Chirp.includes(:author).all
@@ -76,25 +78,18 @@ class Chirp < ApplicationRecord
         end
     end
 
-    # Joins #
+    #* Joins version
 
-    def self.see_chirp_num_likes_n_plus_one
-        chirps = Chirp.all
+    def self.see_chirps_author_joins
+        chirps = Chirp
+            .select("chirps.*, users.username")
+            .joins(:author)
 
-        chirps.each do |chirp|
-            puts chirp.likes.length
+        chirps.each do |chirp| 
+        # uses pre-fetched data 
+            puts chirp.username
         end
     end
 
-    def self.see_chirp_num_likes_optimized
-        chirps_with_likes = Chirp
-            .select("chirps.*, COUNT(*) AS num_likes")
-            .joins(:likes)
-            .group(:id)
-    
-        chirps_with_likes.each do |chirp|
-            puts chirp.num_likes
-        end
-    end
 
 end
