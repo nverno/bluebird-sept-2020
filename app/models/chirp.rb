@@ -7,27 +7,27 @@
 #  author_id :integer          not null
 #
 class Chirp < ApplicationRecord 
-    #validations run when you try to save
+    # validations run when you try to save
     validates :body, presence: true 
     # validates :author_id, presence: true  
-    #belongs_to association automatically validates presence of author_id so no need to explicitly validate
-    validate :body_too_long #custom validation, need to use validate singular
+    # belongs_to association automatically validates presence of author_id so no need to explicitly validate
+    validate :body_too_long # custom validation, need to use validate singular
 
-    #custom validation
+    # custom validation
     def body_too_long 
-        #check if body exists first
+        # check if body exists first
         if body && body.length > 140
             errors[:body] << 'is too long. Keep it short please.'
         end
     end
 
-    #associations
-    #belongs_to if you hold a foreign key
-    belongs_to :author, #what you want to name association
-        primary_key: :id,
-        foreign_key: :author_id,
-        class_name: :User #'User' works as well
-    #cannot do one-liner bc foreign key author_id isn't same as class name user
+    # associations
+    # belongs_to if you hold a foreign key
+    belongs_to :author, # what you want to name association
+        primary_key: :id, # from other class
+        foreign_key: :author_id, # from this class
+        class_name: :User # 'User' works as well
+    # cannot do one-liner bc foreign key author_id isn't same as class name user
 
     has_many :likes,
         foreign_key: :chirp_id,
@@ -36,4 +36,65 @@ class Chirp < ApplicationRecord
     has_many :likers,
         through: :likes,
         source: :liker 
+
+    #* User Queries:
+    ## The following queries are being typed here mainly as a resource for you.
+
+    #? Find all chirps for a particular user
+    # one query version
+
+    #? Find all chirps liked by people affiliated with JavaScript
+    # unique values version
+
+    #? Find all chirps with no likes
+
+    #? Find chirps with at least 3 likes (try to use pluck)
+    # what if we also wanted the number of likes?
+
+    #? Find all chirps created by someone age 99 that were also liked by someone age 99
+
+    #* Includes examples
+
+    def self.see_chirp_authors_n_plus_one
+        # the "+1"
+        chirps = Chirp.all
+
+        # the "N"
+        chirps.each do |chirp|
+            puts chirp.author.username
+        end
+
+    end
+
+    def self.see_chirps_optimized
+        # pre-fetches data
+        chirps = Chirp.includes(:author).all
+
+        chirps.each do |chirp| 
+        # uses pre-fetched data 
+            puts chirp.author.username
+        end
+    end
+
+    # Joins #
+
+    def self.see_chirp_num_likes_n_plus_one
+        chirps = Chirp.all
+
+        chirps.each do |chirp|
+            puts chirp.likes.length
+        end
+    end
+
+    def self.see_chirp_num_likes_optimized
+        chirps_with_likes = Chirp
+            .select("chirps.*, COUNT(*) AS num_likes")
+            .joins(:likes)
+            .group(:id)
+    
+        chirps_with_likes.each do |chirp|
+            puts chirp.num_likes
+        end
+    end
+
 end

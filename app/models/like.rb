@@ -19,9 +19,9 @@ class Like < ApplicationRecord
     # belongs_to :chirp,
     #     foreign_key: :chirp_id,
     #     class_name: :Chirp 
-        #can leave off primary_key bc always id
+        # can leave off primary_key bc always id
 
-    belongs_to :chirp #one-liner
-    #can do this bc foreign key is chirp_id which is same as class Chirp
+    belongs_to :chirp # one-liner
+    # can do this bc foreign key is chirp_id which is same as class Chirp
 
 end

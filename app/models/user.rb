@@ -13,11 +13,11 @@ class User < ApplicationRecord
     validates :username, :email, :age, presence: true 
     validates :username, :email, uniqueness: true 
 
-    #associations
-    has_many :chirps, #what you want to name association
-        primary_key: :id,
-        foreign_key: :author_id,
-        class_name: :Chirp 
+    # associations
+    has_many :chirps, # what you want to name association
+        primary_key: :id, # from this class
+        foreign_key: :author_id, # from other class
+        class_name: :Chirp # other class
     
     has_many :likes,
         primary_key: :id,
@@ -25,6 +25,21 @@ class User < ApplicationRecord
         class_name: :Like 
     
     has_many :liked_chirps,
-        through: :likes, #must be association name from this class!!
-        source: :chirp #must be association name!!
+        through: :likes, # must be association name from this class!!
+        source: :chirp # must be association name!!
+
+
+    #* User Queries:
+    ## The following queries are being typed here mainly as a resource for you.
+
+    #? Find all instructors between the ages of 90 to 100 inclusive
+
+    #? Find all users that are not JavaScript affiliated (use where not)
+
+    #? Find all instructors in this list and order by ascending
+    instructors = ["mish_mosh", "wakka_wakka", "jen_ken_intensifies"]
+
+
+
+    
 end
