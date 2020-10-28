@@ -7,7 +7,6 @@ class ChirpsController < ApplicationController
     def show
         # this should get the info of one specific chirp and render it
         chirp = Chirp.find_by(id: params[:id])
-        debugger
         # chirp = Chirp.find(params[:id])
         render json: chirp
     end
@@ -51,7 +50,6 @@ class ChirpsController < ApplicationController
         chirp = Chirp.find_by(id: params[:id])
 
         chirp.destroy
-        debugger
         redirect_to chirps_url # sends to the index action
     end
 
