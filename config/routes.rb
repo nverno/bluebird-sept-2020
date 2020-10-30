@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   # resources :name_of_resource, options hash
   # resources :chirps, except: [:new, :edit]
   # resources :chirps, only: [:index, :show, :create, :update, :destroy]
+
+  resources :users
 end
