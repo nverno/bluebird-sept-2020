@@ -1,0 +1,17 @@
+<h1>Here are all of our Users</h1>
+<a href="<%= new_user_url %>">Create a User</a>
+
+<ul>
+    <% @users.each do |user| %>
+        <li class='user'>
+            <!-- 
+            <ul class='user-attributes'>
+                <li><%#= user.username %></li>
+                <li><%#= user.age %></li>
+                <li><%#= user.email %></li>
+            </ul>
+            -->
+            <%= render 'user', banana: user, action: 'index' %>
+        </li>
+    <% end %>
+</ul>

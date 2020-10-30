@@ -1,0 +1,16 @@
+<marquee scrollamount=50>THIS BE THE USERS SHOW PAGE</marquee>
+
+<!--
+<ul class='user-attributes'>
+    <li><%#= @user.username %></li>
+    <li><%#= @user.age %></li>
+    <li><%#= @user.email %></li>
+</ul>
+-->
+<%= render 'user', banana: @user, action: 'show' %>
+<a href="<%= edit_user_url(@user) %>">Edit this User</a> <%# links are for GET requests %>
+
+<form action="<%= user_url(@user) %>" method="POST">
+    <input type="hidden" name="_method" value="DELETE">
+    <input type="submit" value="Bye Bye <%= @user.username %>"> <%# yes %>
+</form>

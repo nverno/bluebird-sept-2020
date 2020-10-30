@@ -1,38 +1,62 @@
 class UsersController < ApplicationController
     def index
-        users = User.all
-        render json: users
+        @users = User.all # rails does some stuff under the hood to pass it to the view
+        # render json: users
+        render :index
+
+        # if no explicit render/redirect,
+        # rails assumes you want to render a template of same name as action
     end
 
     def show
-        user = User.find(params[:id])
-        render json: user
+        # instance variables get passed to the view templates
+        @user = User.find(params[:id])
+        # render json: user
+        render :show
+    end
+
+    def new
+        @user = User.new # empty user object so our form doesn't break
+        render :new
     end
 
     def create
-        user = User.new(user_params)
+        # debugger
+        @user = User.new(user_params)
         
-        if user.save
-            redirect_to user_url(user)
+        if @user.save
+            redirect_to user_url(@user)
         else
-            render json: user.errors.full_messages, status: 422
+            # render json: user.errors.full_messages, status: 422
+            render :new # still have access to @user instance variable for this view
+        end
+    end
+
+    def edit
+        @user = User.find_by(id: params[:id]) # returns nil if not found
+
+        if @user
+            render :edit
+        else
+            render json: 'not there', status: 404
         end
     end
 
     def update
-        user = User.find(params[:id])
+        @user = User.find(params[:id]) # throws exception if not found
 
-        if user.update(user_params)
-            redirect_to user_url(user)
+        if @user.update(user_params)
+            redirect_to user_url(@user)
         else
-            render json: user.errors.full_messages, status: 422
+            # render json: @user.errors.full_messages, status: 422
+            render :edit
         end
     end
 
     def destroy
-        user = User.find(params[:id])
+        @user = User.find(params[:id])
 
-        user.destroy
+        @user.destroy
         redirect_to users_url 
     end
 

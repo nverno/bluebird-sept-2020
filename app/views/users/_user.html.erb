@@ -1,0 +1,16 @@
+<%# no instance variables in partials %>
+<%# when this partial is being rendered by the index template %>
+<%# you wont have the @user variable %>
+
+<% if action == 'show' %>
+    <a href="<%= users_url %>">Users Index Link</a>
+<% else %>
+    <a href="<%= user_url(banana) %>">Users Show Link</a>
+<% end %>
+
+<ul class='user-attributes'>
+    <li><%= banana.username %></li>
+    <li><%= banana.age %></li>
+    <li><%= banana.email %></li>
+</ul>
+
