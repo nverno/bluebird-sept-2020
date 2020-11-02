@@ -9,27 +9,26 @@
   User.destroy_all
   
   # Instructors
-  joe = User.create!(username: "trader_joes_4lyf3", age: 99, political_affiliation: "Ruby", email: "thetraderjoe@aa.io")
-  walker = User.create!(username: "wakka_wakka", age: 99, political_affiliation: "JavaScript", email: "wakka@wakka.walking")
-  mike = User.create!(username: "like_mike", age: 99, political_affiliation: "Ruby", email: "magicmike@aa.io")
-  michelle = User.create!(username: "mish_mosh", age: 99, political_affiliation: "JavaScript", email: "headphones@aa.io")
-  vanessa = User.create!(username: "aa_celebrity", age: 99, political_affiliation: "Ruby", email: "vans@aa.io")
-  jen = User.create!(username: "jen_ken_intensifies", age: 99, political_affiliation: "JavaScript", email: "jen@aa.io")
+joe = User.create!(username: "trader_joes_4lyf3", age: 99, political_affiliation: "Ruby", password: 'trader12')
+walker = User.create!(username: "wakka_wakka", age: 99, political_affiliation: "JavaScript", password: 'wakkawakka42')
+mike = User.create!(username: "like_mike", age: 99, political_affiliation: "Ruby", password: 'magic_mike')
+michelle = User.create!(username: "mish_mosh", age: 99, political_affiliation: "JavaScript", password: 'vanessa_clone')
+vanessa = User.create!(username: "aa_celebrity", age: 99, political_affiliation: "Ruby", password: 'michelle_clone')
+jen = User.create!(username: "jen_ken_intensifies", age: 99, political_affiliation: "JavaScript", password: 'timmy4Lyfe')
 
-  elliot = User.create!(username: "all_knowing_elliot", age: 99, political_affiliation: "C", email: "those_are_teef@aa.io")
-  dean = User.create!(username: "mean_dean", age: 99, political_affiliation: "Ruby", email: "deans_diary@aa.io")
-  alissa = User.create!(username: "brussels_sprout", age: 99, political_affiliation: "JavaScript" , email: "cows@aa.io")
-  angela = User.create!(username: "loves_capy", age: 99, political_affiliation: "JavaScript", email: "chosenone@aa.io")
-  
-  ryan = User.create!(username: "will_climb_rocks", age: 99, political_affiliation: "JavaScript" , email: "boulderz@aa.io")
-  charlos = User.create!(username: "charlos_gets_buckets", age: 99, political_affiliation: "Ruby", email: "ballin@aa.io")
-  lina = User.create!(username: "bonjour_6am_yoga", age: 99, political_affiliation: "Ruby", email: "bonjour_programmeurs@aa.io")
-  julia = User.create!(username: "boba_queen", age:99, political_affiliation: "JavaScript", email: "juliagulia@aa.io" )
-  erik = User.create!(username: "stpaterik", age: 99, political_affiliation: "Ruby", email: "bokchoy@aa.io")
-  zack = User.create!(username: "sickjams", age: 99, political_affiliation: "JavaScript", email: "zackattack@aa.io")
+elliot = User.create!(username: "all_knowing_elliot", age: 99, political_affiliation: "C", password: 'banana4ever')
+dean = User.create!(username: "mean_dean", age: 99, political_affiliation: "Ruby", password: 'mean_dean37')
+alissa = User.create!(username: "brussels_sprout", age: 99, political_affiliation: "JavaScript", password: 'boarderXchamp')
+angela = User.create!(username: "loves_capy", age: 99, political_affiliation: "JavaScript", password: 'candy_tosser')
 
-  big_company = User.create!(username: "corporate_overlord", age: 52, political_affiliation: "Investors", email: "giveus@money.pls")
-  
+ryan = User.create!(username: "will_climb_rocks", age: 99, political_affiliation: "JavaScript", password: 'mapamapa')
+charlos = User.create!(username: "charlos_gets_buckets", age: 99, political_affiliation: "Ruby", password: 'blackMamba')
+lina = User.create!(username: "bonjour_6am_yoga", age: 99, political_affiliation: "Ruby", password: 'sacrebleu')
+julia = User.create!(username: "boba_queen", age:99, political_affiliation: "JavaScript", password: 'bobaTea')
+erik = User.create!(username: "stpaterik", age: 99, political_affiliation: "Ruby", password: 'EMT4lyfe')
+zack = User.create!(username: "sickjams", age: 99, political_affiliation: "JavaScript", password: 'soundOfMusic')
+
+big_company = User.create!(username: "corporate_overlord", age: 52, political_affiliation: "Investors", password: 'cashRulesEverythingAroundMe')
   Chirp.destroy_all
 
   # Chirps

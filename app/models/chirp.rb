@@ -42,7 +42,7 @@ class Chirp < ApplicationRecord
 
     #? Find all chirps for a particular user
 
-    User.find_by(username: 'like_mike').chirps # two queries
+    # User.find_by(username: 'like_mike').chirps # two queries
 
     # one query version
     # HINT: involves joins
