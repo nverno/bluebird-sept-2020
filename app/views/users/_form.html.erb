@@ -10,6 +10,8 @@
     <% if type == 'edit' %>
         <input type="hidden" name='_method' value='PATCH'>
     <% end %>
+    
+    <%= auth_token %>
 
     <label>Username:
         <input type="text" name="user[username]" value="<%= user.username %>">

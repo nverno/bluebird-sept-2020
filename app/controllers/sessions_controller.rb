@@ -12,6 +12,7 @@ class SessionsController < ApplicationController
       login(@user)
       redirect_to user_url(@user)
     else
+      flash.now[:errors] = ["Invalid Credentails"]
       render :new
     end
   end
