@@ -30,10 +30,10 @@ class UsersController < ApplicationController
             login(@user)
             redirect_to user_url(@user)
         else
-            flash[:errors] = @user.errors.full_messages
+            flash.now[:errors] = @user.errors.full_messages
             # render json: user.errors.full_messages, status: 422
-            # render :new # still have access to @user instance variable for this view
-            redirect_to new_user_url
+            render :new # still have access to @user instance variable for this view
+            # redirect_to new_user_url
             # render :new
         end
     end
