@@ -66,13 +66,13 @@ class Chirp < ApplicationRecord
     #? Find the number of likes each chirp has
 
     Chirp.select(:id, :body, "count(*) AS num_likes").joins(:likes).group(:id)
-    Chirp.joins(:likes).group(:id).pluck(:body, "count(*) AS num_likes") # returns num of likes
+    # Chirp.joins(:likes).group(:id).pluck(:body, "count(*) AS num_likes") # returns num of likes
 
     #? Find chirps with at least 3 likes (try to use pluck)
     # what if we also wanted the number of likes? (look above)
 
-    Chirp.select(:id, :body, "count(*) AS num_likes").joins(:likes).group(:id).having("count(*) > 2").pluck(:body, "count(*)")
-    Chirp.joins(:likes).group(:id).having("count(*) > 2").pluck(:body, "count(*)")
+    # Chirp.select(:id, :body, "count(*) AS num_likes").joins(:likes).group(:id).having("count(*) > 2").pluck(:body, "count(*)")
+    # Chirp.joins(:likes).group(:id).having("count(*) > 2").pluck(:body, "count(*)")
 
 
     #? Find all chirps created by someone age 99 that were also liked by someone age 99
