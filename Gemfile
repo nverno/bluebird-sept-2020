@@ -45,6 +45,12 @@ group :development, :test do
   gem 'annotate'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'rspec-rails' 
+  gem 'rails-controller-testing' 
+  gem 'factory_bot_rails' 
+  gem 'faker' 
+  gem 'shoulda-matchers' 
+  gem 'launchy' 
 end
 
 group :development do
